@@ -12,8 +12,8 @@ const router = express.Router();
 
 //POST method
 router.post("/",  async (req, res) => {
-  const {name,poster,rating,summary,category,price} = req.body;
-  if(!name || !poster || !rating || !summary || !category || !price) return res.status(400).send({error:"Invalid Credentials"});
+  const {name,poster,rating,summary,category,price,warranty} = req.body;
+  if(!name || !poster || !rating || !summary || !category || !price ||!warranty) return res.status(400).send({error:"Invalid Credentials"});
   const id = Math.floor(Math.random() * 10000 + 1);
   const newProduct = {
     id:id,
@@ -22,7 +22,8 @@ router.post("/",  async (req, res) => {
     rating:rating,
     summary:summary,
     category:category,
-    price:price
+    price:price,
+    warranty:warranty
   }
   console.log(newProduct);
   const create = await addProducts(newProduct);
