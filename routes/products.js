@@ -38,11 +38,10 @@ router.get("/:movieId", async (req, res) => {
 });
 
 //Delete Book
-router.delete("/:movieId", async (req, res) => {
-  const { movieId } = req.params;
-  const movie = await deleteProductsById(movieId);
-  // const movie = movies.find((mv) => mv.id == movieId)
-  res.send(movie);
+router.delete("/:productId", async (req, res) => {
+  const { productId } = req.params;
+  const product = await deleteProductsById(productId);
+  res.send(product);
 });
 
 //Update movie
