@@ -37,10 +37,11 @@ router.get("/:movieId", async (req, res) => {
   movie ? res.send(movie) : res.status(404).send({ message: "No Movie Found" });
 });
 
-//Delete Book
+//Delete product
 router.delete("/:productId", async (req, res) => {
   const { productId } = req.params;
-  const product = await deleteProductsById(productId);
+  const id = +productId;
+  const product = await deleteProductsById(id);
   res.send(product);
 });
 
