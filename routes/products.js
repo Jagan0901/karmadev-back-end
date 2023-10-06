@@ -29,12 +29,14 @@ router.post("/",  async (req, res) => {
   res.send(create);
 });
 
-// Movies/id
-router.get("/:movieId", async (req, res) => {
-  const { movieId } = req.params;
-  const movie = await getProductsById(movieId);
-  // const movie = movies.find((mv) => mv.id == movieId)
-  movie ? res.send(movie) : res.status(404).send({ message: "No Movie Found" });
+// products/id
+router.get("/:productId", async (req, res) => {
+  const { productId } = req.params;
+  const id = +productId;
+  const product = await getProductsById(id);
+  product
+    ? res.send(product)
+    : res.status(404).send({ message: "No Product Found" });
 });
 
 //Delete product
@@ -46,11 +48,11 @@ router.delete("/:productId", async (req, res) => {
 });
 
 //Update movie
-router.put("/:movieId",  async (req, res) => {
-  const { movieId } = req.params;
-  const updatedMovie = req.body;
-  // console.log(newMovie);
-  const edit = await editProductsById(movieId, updatedMovie);
+router.put("/:productId", async (req, res) => {
+  const { productId } = req.params;
+  const updatedProduct = req.body;
+  const id = +productId;
+  const edit = await editProductsById(id, updatedProduct);
   res.send(edit);
 });
 

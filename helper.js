@@ -35,27 +35,30 @@ export async function getProducts(req) {
     .toArray();
 }
 
-export async function addProducts(newMovie) {
-  return await client.db("KarmaDev").collection("products").insertOne(newMovie);
-}
-
-export async function getProductsById(movieId) {
+export async function addProducts(newProduct) {
   return await client
     .db("KarmaDev")
     .collection("products")
-    .findOne({ id: movieId });
+    .insertOne(newProduct);
 }
 
-export async function deleteProductsById(movieId) {
+export async function getProductsById(productId) {
   return await client
     .db("KarmaDev")
     .collection("products")
-    .deleteOne({ id: movieId });
+    .findOne({ id: productId });
 }
 
-export async function editProductsById(movieId, updatedMovie) {
+export async function deleteProductsById(productId) {
   return await client
     .db("KarmaDev")
     .collection("products")
-    .updateOne({ id: movieId }, { $set: updatedMovie });
+    .deleteOne({ id: productId });
+}
+
+export async function editProductsById(productId, updatedProduct) {
+  return await client
+    .db("KarmaDev")
+    .collection("products")
+    .updateOne({ id: productId }, { $set: updatedProduct });
 }
